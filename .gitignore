@@ -1,0 +1,22 @@
+*.iml
+.gradle/
+build/
+/local.properties
+.idea/
+.DS_Store
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+*.jks
+*.keystore
+keystore.properties
+
+# Kotlin 2.x 构建会话与本地工具状态
+.kotlin/
+.workbuddy/
+
+# 构建/调试临时产物
+*.log
+t04*
