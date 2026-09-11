@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>mermaid-viewer</title>
+  <style>
+    html, body { margin: 0; padding: 0; background: transparent; }
+    #container { display: flex; justify-content: center; align-items: center; padding: 8px 4px; }
+    #container svg { max-width: 100% !important; height: auto; }
+    .mmd-error { color: #c62828; font: 12px/1.4 monospace; white-space: pre-wrap; word-break: break-word; padding: 8px; margin: 0; }
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+  <!-- 本地资产：随 APK 打包，绝不联网（沙箱由宿主 WebView 设置保证） -->
+  <script src="mermaid.min.js"></script>
+  <script>
+    (function () {
+      var seq = 0;
+
+      function notify() {
+        try {
+          var h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+          if (window.AiboxMermaid && window.AiboxMermaid.postHeight) {
+            window.AiboxMermaid.postHeight(Math.ceil(h));
+          }
+        } catch (e) { /* ignore */ }
+      }
+
+      function fail(message) {
+        var el = document.getElementById('container');
+        while (el.firstChild) { el.removeChild(el.firstChild); }
+        var pre = document.createElement('pre');
+        pre.className = 'mmd-error';
+        pre.textContent = String(message);
+        el.appendChild(pre);
+        try {
+          if (window.AiboxMermaid && window.AiboxMermaid.postError) {
+            window.AiboxMermaid.postError(String(message));
+          }
+        } catch (e) { /* ignore */ }
+        notify();
+      }
+
+      window.renderMermaid = function (code, theme) {
+        var el = document.getElementById('container');
+        if (!window.mermaid) { fail('mermaid runtime not loaded'); return; }
+        try {
+          mermaid.initialize({
+            startOnLoad: false,
+            // 沙箱内最严格：禁用图表内脚本与点击回调
+            securityLevel: 'strict',
+            theme: theme === 'dark' ? 'dark' : 'default',
+            fontFamily: 'sans-serif'
+          });
+        } catch (e) {
+          fail(e && e.message ? e.message : e);
+          return;
+        }
+        var id = 'mmd-' + (++seq);
+        while (el.firstChild) { el.removeChild(el.firstChild); }
+        try {
+          mermaid.render(id, String(code)).then(function (result) {
+            el.innerHTML = result.svg;
+            notify();
+          }).catch(function (err) {
+            fail(err && err.message ? err.message : err);
+          });
+        } catch (err) {
+          fail(err && err.message ? err.message : err);
+        }
+      };
+
+      window.addEventListener('load', notify);
+    })();
+  </script>
+</body>
+</html>

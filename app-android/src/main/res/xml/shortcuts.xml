@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    App Shortcuts（替代桌面全局热键，架构 §1.4 / PEQ-06）。
+    本次仅提供最小骨架：一项「新建会话」，后续 T17 可扩展。
+-->
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="new_session"
+        android:enabled="true"
+        android:icon="@drawable/ic_launcher"
+        android:shortcutShortLabel="@string/shortcut_new_session_short"
+        android:shortcutLongLabel="@string/shortcut_new_session_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.aibox.kotlin"
+            android:targetClass="com.aibox.kotlin.MainActivity" />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+</shortcuts>

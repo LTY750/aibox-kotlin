@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Aibox" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
+
+    <!--
+        Splash 主题（core-splashscreen）：冷启动先显示品牌背景 + 图标，避免白屏。
+        installSplashScreen() 完成后切换到 postSplashScreenTheme（应用主主题）。
+    -->
+    <style name="Theme.Aibox.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/splash_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher</item>
+        <item name="postSplashScreenTheme">@style/Theme.Aibox</item>
+    </style>
+</resources>

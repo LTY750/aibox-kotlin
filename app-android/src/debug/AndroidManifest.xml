@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  debug 源集专用清单：仅把 T04 渲染样例页注册为可外部启动的调试入口，
+  release 变体不会合并本文件。
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+        <activity
+            android:name="com.aibox.kotlin.debug.RenderSampleActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Aibox" />
+    </application>
+
+</manifest>

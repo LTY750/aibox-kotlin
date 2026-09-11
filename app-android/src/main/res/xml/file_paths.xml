@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    FileProvider 暴露路径白名单（安全设计 §9.3）。
+    仅暴露「导出/分享」子目录，绝不暴露 cacheDir / filesDir 根目录，
+    避免把内部私有数据（数据库、日志、凭据缓存）经 content:// 泄露出去。
+-->
+<paths>
+    <!-- 分享临时文件（cacheDir/share/） -->
+    <cache-path
+        name="share_cache"
+        path="share/" />
+    <!-- 导出产物（cacheDir/export/） -->
+    <cache-path
+        name="export_cache"
+        path="export/" />
+    <!-- 导出产物（filesDir/export/） -->
+    <files-path
+        name="export_files"
+        path="export/" />
+    <!-- 导出产物（外部私有 filesDir/export/） -->
+    <external-files-path
+        name="export_external"
+        path="export/" />
+</paths>

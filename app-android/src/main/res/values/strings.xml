@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AIbox</string>
+
+    <!-- App Shortcuts -->
+    <string name="shortcut_new_session_short">新建会话</string>
+    <string name="shortcut_new_session_long">开始一个新的对话</string>
+
+    <!-- 生成流保活通知（T02） -->
+    <string name="notification_channel_stream">生成保活</string>
+    <string name="notification_channel_stream_desc">会话生成期间保持后台运行，避免长回复中断</string>
+    <string name="notification_streaming">生成中</string>
+    <string name="notification_completed">已完成</string>
+</resources>

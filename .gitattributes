@@ -1,0 +1,13 @@
+# 统一换行符：避免 Windows 检出把 gradlew 变成 CRLF 导致 *nix 上无法执行
+* text=auto
+
+gradlew text eol=lf
+*.sh    text eol=lf
+*.bat   text eol=crlf
+
+# 二进制资源不做换行转换
+*.jar   binary
+*.png   binary
+*.jpg   binary
+*.webp  binary
+*.ttf   binary

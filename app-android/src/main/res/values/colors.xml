@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 启动图背景色（与主题主色一致，避免冷启动白屏） -->
+    <color name="splash_background">#2A6EF4</color>
+</resources>

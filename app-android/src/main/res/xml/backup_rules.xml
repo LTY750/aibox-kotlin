@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Android 11 及以下的 fullBackupContent 规则（与 data_extraction_rules 语义一致）。
+    显式排除全部私有域；配合 android:allowBackup="false" 双重保障。
+-->
+<full-backup-content>
+    <exclude domain="root" path="." />
+    <exclude domain="file" path="." />
+    <exclude domain="database" path="." />
+    <exclude domain="sharedpref" path="." />
+    <exclude domain="external" path="." />
+</full-backup-content>
